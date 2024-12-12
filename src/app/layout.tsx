@@ -25,16 +25,16 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           enableSystem
           disableTransitionOnChange
         >
-          <main className="min-h-screen flex flex-col items-center">
+          <main className="min-h-screen flex flex-col">
 
-          {/* ---------------- Header ---------------- */}
-          
-          {/* ---------------- Main ---------------- */}
-            <div className="flex flex-col gap-20 max-w-5xl p-5">
+            {/* ---------------- Header ---------------- */}
+
+            {/* ---------------- Main ---------------- */}
+            <div className="flex flex-grow gap-20 max-w-5xl p-3">
               {children}
             </div>
-      
-              {/* ---------------- Footer ---------------- */}
+
+            {/* ---------------- Footer ---------------- */}
             <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
               <p>
                 {new Date().getFullYear()}, Powered by{" "}
