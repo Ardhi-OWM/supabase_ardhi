@@ -1,5 +1,4 @@
-import { signInAction, signUpAction } from '../../(auth-pages)/actions';
-//import { signInAction, signUpAction } from "@/app/actions";
+import { login, signup } from './actions'
 
 export default function LoginPage() {
     return (
@@ -8,8 +7,8 @@ export default function LoginPage() {
             <input id="email" name="email" type="email" required />
             <label htmlFor="password">Password:</label>
             <input id="password" name="password" type="password" required />
-            <button formAction={signInAction}>Log in</button>
-            <button formAction={signUpAction}>Sign up</button>
+            <button formAction={login}>Log in</button>
+            <button formAction={signup}>Sign up</button>
         </form>
     )
 }
