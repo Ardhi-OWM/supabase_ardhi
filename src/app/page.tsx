@@ -10,16 +10,17 @@ import {
 export default function AccordionDemo() {
   return (
     <Accordion type="single" collapsible className="w-full">
-      <div className="col-12">
+      <div className="col-12 mt-24">
         <h1 className="text-3xl ubuntu-mono-bold mb-4">Welcome to Ardhi App! 🚀</h1>
         <p className="mb-4">
           Bring your geospatial analysis closer to your non-tech users, enabling users to visualize and download data effortlessly.
           It supports data-driven decisions across diverse industries.
         </p>
+      
         <div className="flex place-content-center">
           <Button>
-            <Link href="/login">
-              Login / Register
+            <Link href="/signin">
+              Login Or Register
             </Link>
           </Button>
         </div>

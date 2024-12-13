@@ -1,13 +1,32 @@
-import { type NextRequest } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { updateSession } from './src/utils/supabase/middleware'
+import { createClient } from "@/utils/supabase/server";
+
 
 export async function middleware(request: NextRequest) {
     // update user's auth session
-    return await updateSession(request)
+    await updateSession(request);
+
+    const supabase = await createClient();
+    const {
+        data: { user },
+    } = await supabase.auth.getUser();
+
+    // Redirect unauthenticated users to the sign-in page
+    if (!user) {
+        const signInUrl = new URL("/signin", request.url);
+        return NextResponse.redirect(signInUrl);
+    }
+
+    // Allow the request to proceed if authenticated
+    return NextResponse.next();
+
 }
+
 
 export const config = {
     matcher: [
+        "/dashboard", "/api-connections", "/converter",
         /*
          * Match all request paths except for the ones starting with:
          * - _next/static (static files)

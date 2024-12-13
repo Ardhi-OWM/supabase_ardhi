@@ -1,8 +1,12 @@
 import { ThemeProvider } from "next-themes";
 
 import './globals.css'
-import { ThemeSwitcher } from "@/components/Shared/theme-switcher";
 import { Space_Grotesk } from "next/font/google";
+import Header from "@/components/Shared/Header"; 
+import Footer from "@/components/Shared/Footer"; 
+
+
+
 
 export const metadata = {
   title: "Ardhi App",
@@ -15,43 +19,35 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children
+}: Readonly<{ 
+  children: React.ReactNode
+}>) {
+  //const isSignInPage = true; // Explicitly set to true for this page
+
   return (
-    <html lang="en" className={spaceGrotesk.className} suppressHydrationWarning>
-      <body className="bg-background text-foreground">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main className="min-h-screen flex flex-col">
-
-            {/* ---------------- Header ---------------- */}
-
-            {/* ---------------- Main ---------------- */}
-            <div className="flex flex-grow gap-20 max-w-5xl p-3">
-              {children}
-            </div>
-
-            {/* ---------------- Footer ---------------- */}
-            <footer className="w-full flex items-center justify-center border-t mx-auto text-center text-xs gap-8 py-16">
-              <p>
-                {new Date().getFullYear()}, Powered by{" "}
-                <a
-                  href="https://ardhi.de/"
-                  target="_blank"
-                  className="font-sm hover:underline text-green-500"
-                  rel="noreferrer"
-                >
-                  &copy; Ardhi
-                </a>
-              </p>
-              <ThemeSwitcher />
-            </footer>
-          </main>
-        </ThemeProvider>
-      </body>
-    </html>
-  )
+      <html lang="en" className={spaceGrotesk.className} suppressHydrationWarning>
+          <body className="bg-background text-foreground">
+              <ThemeProvider
+                  attribute="class"
+                  defaultTheme="system"
+                  enableSystem
+                  disableTransitionOnChange
+              >
+                  <div className="min-h-screen flex flex-col">
+                      {/* ---------------- Header ---------------- */}
+                      {/* {!isSignInPage && <Header />}  */}
+                      <Header />
+                      {/* ---------------- Main ---------------- */}
+                      <main className="flex flex-grow gap-20 max-w-5xl p-3">
+                          {children}
+                      </main>
+                      {/* ---------------- Footer ---------------- */}
+                      {/* {!isSignInPage  && <Footer />}  */}
+                      <Footer />
+                  </div>
+              </ThemeProvider>
+          </body>
+      </html>
+  );
 }
